@@ -5,7 +5,7 @@ Isolated from every other workstream in `Transformer/` — nothing here is impor
 
 ## Files
 
-- `assets/wpa-{infernus,doorman,ivy}-{dark,light}.svg` — rendered 2026-08-26 from WPA blob **v140**
+- `assets/wpa-infernus-{dark,light}.svg` — rendered 2026-08-26 from WPA blob **v140**
   (`wpa_analysis_data_compressed` id 140, active on statlocker.gg, created 2026-08-24). Verified to
   reproduce the live `wpa-homepage-data` endpoint item-for-item before rendering.
 - `PROFILE_README.md` — the full profile README with the chart section added under "Selected Work".
@@ -27,7 +27,7 @@ Either a local `WPA/outputs/wpa_analysis_by_patch_*.json` or the active row from
 (`SELECT TO_BASE64(data_json_compressed) FROM wpa_analysis_data_compressed WHERE is_active=1` → `base64 -d | gunzip`):
 
 ```bash
-python3 scripts/render_wpa.py --local /path/to/blob.json --heroes Infernus,The_Doorman,Ivy --ranks rank_9 --min-samples 250 --date 2026-08-24
+python3 scripts/render_wpa.py --local /path/to/blob.json --heroes Infernus --ranks rank_9 --min-samples 250 --date 2026-08-24
 ```
 
 `extract_items_for_hero` mirrors `WpaAnalysisService.extractItemsForHero` in statlock (sample-weighted
