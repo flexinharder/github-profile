@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="394" viewBox="0 0 820 394" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace">
+<rect width="820" height="394" rx="12" fill="#0d1117"/>
+<text x="24" y="32" font-size="16" font-weight="600" fill="#0ea5e9">Item WPA · Ivy</text>
+<text x="24" y="52" font-size="11" fill="#8b949e">top 2 items per cost tier by mean win-probability added per purchase (pp)</text>
+<line x1="304.5" y1="66" x2="304.5" y2="350" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="2 4"/>
+<line x1="395.0" y1="66" x2="395.0" y2="350" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="2 4"/>
+<line x1="485.5" y1="66" x2="485.5" y2="350" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="2 4"/>
+<line x1="576.0" y1="66" x2="576.0" y2="350" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="2 4"/>
+<text x="24" y="95.0" font-size="13" fill="#c9d1d9">Mystic Expansion</text>
+<rect x="214" y="82" width="52.9" height="18" rx="4" fill="#0ea5e9"/>
+<text x="274.9" y="95.0" font-size="12" font-weight="600" fill="#c9d1d9">+0.71 pp</text>
+<text x="796" y="95.0" font-size="11" text-anchor="end" fill="#8b949e">T1 · n=19.1k</text>
+<text x="24" y="129.0" font-size="13" fill="#c9d1d9">Extra Health</text>
+<rect x="214" y="116" width="24.5" height="18" rx="4" fill="#0ea5e9"/>
+<text x="246.5" y="129.0" font-size="12" font-weight="600" fill="#c9d1d9">+0.33 pp</text>
+<text x="796" y="129.0" font-size="11" text-anchor="end" fill="#8b949e">T1 · n=4.9k</text>
+<line x1="24" y1="142" x2="796" y2="142" stroke="#1e3a5f" stroke-width="1"/>
+<text x="24" y="163.0" font-size="13" fill="#c9d1d9">Bullet Resist Shredder</text>
+<rect x="214" y="150" width="103.2" height="18" rx="4" fill="#0ea5e9"/>
+<text x="325.2" y="163.0" font-size="12" font-weight="600" fill="#c9d1d9">+1.39 pp</text>
+<text x="796" y="163.0" font-size="11" text-anchor="end" fill="#8b949e">T2 · n=11.9k</text>
+<text x="24" y="197.0" font-size="13" fill="#c9d1d9">Mystic Vulnerability</text>
+<rect x="214" y="184" width="84.1" height="18" rx="4" fill="#0ea5e9"/>
+<text x="306.1" y="197.0" font-size="12" font-weight="600" fill="#c9d1d9">+1.13 pp</text>
+<text x="796" y="197.0" font-size="11" text-anchor="end" fill="#8b949e">T2 · n=7.8k</text>
+<line x1="24" y1="210" x2="796" y2="210" stroke="#1e3a5f" stroke-width="1"/>
+<text x="24" y="231.0" font-size="13" fill="#c9d1d9">Superior Duration</text>
+<rect x="214" y="218" width="188.8" height="18" rx="4" fill="#0ea5e9"/>
+<text x="410.8" y="231.0" font-size="12" font-weight="600" fill="#c9d1d9">+2.54 pp</text>
+<text x="796" y="231.0" font-size="11" text-anchor="end" fill="#8b949e">T3 · n=12.2k</text>
+<text x="24" y="265.0" font-size="13" fill="#c9d1d9">Greater Expansion</text>
+<rect x="214" y="252" width="167.8" height="18" rx="4" fill="#0ea5e9"/>
+<text x="389.8" y="265.0" font-size="12" font-weight="600" fill="#c9d1d9">+2.26 pp</text>
+<text x="796" y="265.0" font-size="11" text-anchor="end" fill="#8b949e">T3 · n=18.9k</text>
+<line x1="24" y1="278" x2="796" y2="278" stroke="#1e3a5f" stroke-width="1"/>
+<text x="24" y="299.0" font-size="13" fill="#c9d1d9">Crippling Headshot</text>
+<rect x="214" y="286" width="362.0" height="18" rx="4" fill="#0ea5e9"/>
+<text x="584.0" y="299.0" font-size="12" font-weight="600" fill="#c9d1d9">+4.88 pp</text>
+<text x="796" y="299.0" font-size="11" text-anchor="end" fill="#8b949e">T4 · n=3.2k</text>
+<text x="24" y="333.0" font-size="13" fill="#c9d1d9">Boundless Spirit</text>
+<rect x="214" y="320" width="326.9" height="18" rx="4" fill="#0ea5e9"/>
+<text x="548.9" y="333.0" font-size="12" font-weight="600" fill="#c9d1d9">+4.40 pp</text>
+<text x="796" y="333.0" font-size="11" text-anchor="end" fill="#8b949e">T4 · n=6.8k</text>
+<line x1="24" y1="356" x2="796" y2="356" stroke="#1e3a5f" stroke-width="1"/>
+<text x="24" y="378" font-size="11" fill="#8b949e">statlocker.gg/item-meta · LightGBM WP model, bias-corrected per-item WPA</text>
+<text x="796" y="378" font-size="11" text-anchor="end" fill="#8b949e">updated 2026-08-24</text>
+</svg>
