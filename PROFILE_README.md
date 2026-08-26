@@ -42,11 +42,11 @@ I build models that estimate **what actually caused an outcome** — not just wh
 
 ### The model, on the heroes I play
 
-Top items by Win Probability Added per purchase, from the production LightGBM WP model behind [Statlocker Item Meta](https://statlocker.gg/item-meta). Each bar is the sample-weighted mean swing in win chance a purchase produced, after correcting for who buys the item and when.
+Top items by Win Probability Added per purchase, from the production LightGBM WP model behind [Statlocker Item Meta](https://statlocker.gg/items/meta-model?hero=Abrams&min=500&mode=items-heroes&patch=patch_146261). Phantom-rank matches, items with at least 250 purchases. Each bar is the sample-weighted mean swing in win chance a purchase produced, after correcting for who buys the item and when.
 
 <div align="center">
 
-<a href="https://statlocker.gg/item-meta">
+<a href="https://statlocker.gg/items/meta-model?hero=Infernus&min=250&mode=items-heroes&patch=patch_146261">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/wpa-infernus-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/wpa-infernus-light.svg">
@@ -54,7 +54,7 @@ Top items by Win Probability Added per purchase, from the production LightGBM WP
   </picture>
 </a>
 
-<a href="https://statlocker.gg/item-meta">
+<a href="https://statlocker.gg/items/meta-model?hero=The_Doorman&min=250&mode=items-heroes&patch=patch_146261">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/wpa-doorman-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/wpa-doorman-light.svg">
@@ -62,7 +62,7 @@ Top items by Win Probability Added per purchase, from the production LightGBM WP
   </picture>
 </a>
 
-<a href="https://statlocker.gg/item-meta">
+<a href="https://statlocker.gg/items/meta-model?hero=Ivy&min=250&mode=items-heroes&patch=patch_146261">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/wpa-ivy-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/wpa-ivy-light.svg">

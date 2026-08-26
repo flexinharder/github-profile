@@ -27,11 +27,11 @@ Either a local `WPA/outputs/wpa_analysis_by_patch_*.json` or the active row from
 (`SELECT TO_BASE64(data_json_compressed) FROM wpa_analysis_data_compressed WHERE is_active=1` → `base64 -d | gunzip`):
 
 ```bash
-python3 scripts/render_wpa.py --local /path/to/blob.json --heroes Infernus,The_Doorman,Ivy --date 2026-08-24
+python3 scripts/render_wpa.py --local /path/to/blob.json --heroes Infernus,The_Doorman,Ivy --ranks rank_9 --min-samples 250 --date 2026-08-24
 ```
 
 `extract_items_for_hero` mirrors `WpaAnalysisService.extractItemsForHero` in statlock (sample-weighted
-mean across rank_8–11 × all tiers, top 50 by sample size); chart shows the top 2 per cost tier.
+mean over the chosen ranks × all tiers). Current charts: `--ranks rank_9` (Phantom) with `--min-samples 250` replacing the site's top-50-by-sample cap; chart shows the top 2 per cost tier.
 Without `--local` the script fetches the public hero-of-the-day endpoint instead.
 
 ## Palette

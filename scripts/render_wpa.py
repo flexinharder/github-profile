@@ -48,14 +48,21 @@ def fetch() -> dict:
 
 
 HOMEPAGE_MAX_ITEMS = 50
+RANK_NAMES = {"rank_8": "Oracle", "rank_9": "Phantom", "rank_10": "Ascendant", "rank_11": "Eternus"}
 
 
-def extract_items_for_hero(patch_data: dict, hero: str) -> list[dict]:
+def extract_items_for_hero(patch_data: dict, hero: str, ranks: list[str] | None = None,
+                           min_samples: int | None = None) -> list[dict]:
     """Mirror of WpaAnalysisService.extractItemsForHero: sample-weighted mean WPA
-    across every rank bucket and cost tier, top HOMEPAGE_MAX_ITEMS by sample size."""
+    across the chosen rank buckets and every cost tier. Default (ranks=None,
+    min_samples=None) reproduces the site: all ranks, top HOMEPAGE_MAX_ITEMS by
+    sample size. With min_samples set, the cap is replaced by an n >= min_samples floor."""
     agg: dict[str, dict] = {}
-    for rank_data in patch_data.get("by_rank", {}).values():
-        for tier_data in rank_data.get("by_tier", {}).values():
+    by_rank = patch_data.get("by_rank", {})
+    for rank_key in (ranks or list(by_rank)):
+        if rank_key not in by_rank:
+            raise SystemExit(f"rank {rank_key!r} not in blob; available: {list(by_rank)}")
+        for tier_data in by_rank[rank_key].get("by_tier", {}).values():
             for it in tier_data.get("top_by_hero", {}).get(hero, []):
                 n = int(it.get("sample_size") or 0)
                 if n <= 0:
@@ -68,10 +75,13 @@ def extract_items_for_hero(patch_data: dict, hero: str) -> list[dict]:
     out = [dict(item=a["item"], category=a["category"], cost=a["cost"], mean_wpa=a["wpa_sum"] / a["n"],
                 mean_purchase_time_min=a["t_sum"] / a["n"], sample_size=a["n"]) for a in agg.values()]
     out.sort(key=lambda i: i["sample_size"], reverse=True)
+    if min_samples is not None:
+        return [i for i in out if i["sample_size"] >= min_samples]
     return out[:HOMEPAGE_MAX_ITEMS]
 
 
-def load_local(path: Path, hero: str) -> dict:
+def load_local(path: Path, hero: str, ranks: list[str] | None = None,
+               min_samples: int | None = None) -> dict:
     blob = json.loads(path.read_text())
     by_patch = blob.get("by_patch")
     patch_data = next(iter(by_patch.values())) if by_patch else blob
@@ -79,7 +89,13 @@ def load_local(path: Path, hero: str) -> dict:
                      for h in t.get("top_by_hero", {})})
     if hero not in heroes:
         raise SystemExit(f"hero {hero!r} not in blob; available: {heroes}")
-    return {"hero": hero, "availableHeroes": heroes, "items": extract_items_for_hero(patch_data, hero)}
+    scope = []
+    if ranks:
+        scope.append(" / ".join(RANK_NAMES.get(r, r) for r in ranks))
+    if min_samples is not None:
+        scope.append(f"n ≥ {min_samples}")
+    return {"hero": hero, "availableHeroes": heroes, "scope": " · ".join(scope),
+            "items": extract_items_for_hero(patch_data, hero, ranks, min_samples)}
 
 
 def tier_of(cost: int) -> str:
@@ -120,7 +136,8 @@ def render(data: dict, p: dict, generated: str, rotating: bool = True) -> str:
     s.append(f'<text x="24" y="32" font-size="16" font-weight="600" fill="{p["accent"]}">'
              f'Item WPA · {"hero of the day: " if rotating else ""}{escape(hero)}</text>')
     s.append(f'<text x="24" y="52" font-size="11" fill="{p["muted"]}">'
-             f'top {PER_TIER} items per cost tier by mean win-probability added per purchase (pp){" · rotates daily" if rotating else ""}</text>')
+             f'top {PER_TIER} items per cost tier by mean win-probability added per purchase (pp){" · rotates daily" if rotating else ""}'
+             f'{(" · " + data["scope"]) if data.get("scope") else ""}</text>')
 
     # Grid at 25/50/75/100 % of max
     for frac in (0.25, 0.5, 0.75, 1.0):
@@ -150,7 +167,7 @@ def render(data: dict, p: dict, generated: str, rotating: bool = True) -> str:
     s.append(f'<line x1="24" y1="{H-BOTTOM+10}" x2="{W-24}" y2="{H-BOTTOM+10}" '
              f'stroke="{p["grid"]}" stroke-width="1"/>')
     s.append(f'<text x="24" y="{H-16}" font-size="11" fill="{p["muted"]}">'
-             f'statlocker.gg/item-meta · LightGBM WP model, bias-corrected per-item WPA</text>')
+             f'statlocker.gg/items/meta-model · LightGBM WP model, bias-corrected per-item WPA</text>')
     s.append(f'<text x="{W-24}" y="{H-16}" font-size="11" text-anchor="end" fill="{p["muted"]}">'
              f'updated {generated}</text>')
     s.append("</svg>")
@@ -162,6 +179,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--local", type=Path, help="wpa_analysis_by_patch_*.json to read instead of the live endpoint")
     ap.add_argument("--heroes", default="", help="comma-separated hero keys (e.g. Infernus,The_Doorman,Ivy); requires --local")
+    ap.add_argument("--ranks", default="", help="comma-separated rank keys to include, e.g. rank_9 (Phantom); default = all")
+    ap.add_argument("--min-samples", type=int, default=None, help="replace the site's top-50-by-sample cap with an n >= N floor")
     ap.add_argument("--date", default=datetime.now(timezone.utc).strftime("%Y-%m-%d"), help="date stamp for the footer")
     args = ap.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -170,7 +189,9 @@ def main() -> int:
         heroes = [h.strip() for h in args.heroes.split(",") if h.strip()]
         if not heroes:
             raise SystemExit("--heroes is required with --local")
-        jobs = [(load_local(args.local, h), h.lower().replace("the_", ""), False) for h in heroes]
+        ranks = [r.strip() for r in args.ranks.split(",") if r.strip()] or None
+        jobs = [(load_local(args.local, h, ranks, args.min_samples), h.lower().replace("the_", ""), False)
+                for h in heroes]
     else:
         data = fetch()
         jobs = [(data, None, True)]
