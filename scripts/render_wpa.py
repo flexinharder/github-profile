@@ -21,10 +21,10 @@ OUT_DIR = Path(__file__).resolve().parent.parent / "assets"
 
 # Matches the profile README header (capsule-render + typing-svg colours).
 PALETTES = {
-    "dark": dict(bg="#0d1117", panel="#1e3a5f", accent="#0ea5e9", text="#c9d1d9",
-                 muted="#8b949e", grid="#1e3a5f", neg="#f87171"),
-    "light": dict(bg="#ffffff", panel="#e6f4fb", accent="#0284c7", text="#1f2937",
-                  muted="#6b7280", grid="#e5e7eb", neg="#dc2626"),
+    "dark": dict(bg="#10130D", panel="#2E2C27", accent="#FFED79", text="#FFEFD7",
+                 muted="#8E876F", grid="#2E2C27", neg="#FF410D"),
+    "light": dict(bg="#FDF7EA", panel="#F5EEDC", accent="#B8760A", text="#1B1E14",
+                  muted="#6F6A58", grid="#E3DAC5", neg="#C6340B"),
 }
 FONT = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
 

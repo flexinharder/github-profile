@@ -8,15 +8,17 @@ Isolated from every other workstream in `Transformer/` — nothing here is impor
 - `assets/wpa-infernus-{dark,light}.svg` — rendered 2026-08-26 from WPA blob **v140**
   (`wpa_analysis_data_compressed` id 140, active on statlocker.gg, created 2026-08-24). Verified to
   reproduce the live `wpa-homepage-data` endpoint item-for-item before rendering.
-- `PROFILE_README.md` — the full profile README with the chart section added under "Selected Work".
+- `assets/header-{dark,light}.svg` — the banner. One real match scored once a second by the production win-probability model, name set as FLEXIN. Rendered from `../github-profile-render/` so no scoring code or match data lands in this repo.
+- `assets/laning-grades-{dark,light}.svg` — served letter grade at 6:00 vs. lane ahead on souls at 10:00, 11,940 lanes over 995 matches (grade-outcomes measurement of 2026-08-21). Same renderer location.
+- `PROFILE_README.md` — the full profile README. Nothing in it or in `assets/` names a private repo, a path, or a person.
 - `scripts/render_wpa.py` — the renderer. Stdlib only.
 
 ## Install
 
 ```bash
 # in a clone of github.com/flexinharder/flexinharder
-cp /media/justin-ubuntu/ML-SPACE/Transformer/github-profile/PROFILE_README.md README.md
-mkdir -p assets && cp /media/justin-ubuntu/ML-SPACE/Transformer/github-profile/assets/*.svg assets/
+cp $WORKSPACE/github-profile/PROFILE_README.md README.md
+mkdir -p assets && cp $WORKSPACE/github-profile/assets/*.svg assets/
 git add README.md assets && git commit -m "Add item WPA charts" && git push
 ```
 
@@ -36,4 +38,4 @@ Without `--local` the script fetches the public hero-of-the-day endpoint instead
 
 ## Palette
 
-Matches the README header: bg `#0d1117`, panel `#1e3a5f`, accent `#0ea5e9`, text `#c9d1d9`.
+Statlocker's own, lifted from the site's `SharedColors.css`: bg `#10130D`, text `#FFEFD7`, gold `#FFED79`, amber `#D4860B` (team Amber), sapphire `#4D75C3` (team Sapphire), muted `#8E876F`, grid `#2E2C27`. Light variants live in `../github-profile-render/theme.py`. Every third-party widget in the README (typing text, streak, contribution chart, footer wave) is parameterised to the same colours.
