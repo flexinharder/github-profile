@@ -6,7 +6,7 @@
   <img src="assets/header-dark.svg?v=20260910b" alt="Flexin — data scientist, applied machine learning" width="100%">
 </picture>
 
-<img src="https://readme-typing-svg.demolab.com?font=IBM+Plex+Mono&weight=500&size=17&duration=4200&pause=1300&color=D4860B&center=true&vCenter=true&width=760&height=44&lines=Win+rate+tells+you+who+bought+it%2C+not+whether+it+worked.;44%25+of+items+with+above-average+win+rates+have+negative+impact.;A%2B+lanes+finish+ahead+82%25+of+the+time.+F+lanes%2C+31%25.;Measured+against+what+actually+happened." alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3500&pause=1200&color=D4860B&center=true&vCenter=true&width=700&lines=Nature+is+patient%2C+yet+everything+is+accomplished.;Building+models+that+understand+more+than+we+do." alt="Typing SVG" />
 
 <br/>
 
