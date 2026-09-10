@@ -20,9 +20,7 @@
 
 <div align="center">
 
-`Python` · `Rust` · `Kotlin` · `SQL` · `R` · `Go`
-
-LightGBM · PyTorch · scikit-learn · MySQL · Parquet · AWS · Azure · Linux
+`Python` · `Rust` · `Kotlin` · `SQL`
 
 </div>
 
